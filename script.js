@@ -46,15 +46,22 @@ function initCapabilityHoverSync() {
     const lineIndex = lineMap[capKey];
     
     if (lineIndex) {
-      item.addEventListener('mouseenter', () => {
+      const activate = () => {
         const logoLine = document.querySelector(`.logo-red-line[data-line="${lineIndex}"]`);
         if (logoLine) logoLine.classList.add('active-highlight');
-      });
+      };
 
-      item.addEventListener('mouseleave', () => {
+      const deactivate = () => {
         const logoLine = document.querySelector(`.logo-red-line[data-line="${lineIndex}"]`);
         if (logoLine) logoLine.classList.remove('active-highlight');
-      });
+      };
+
+      item.addEventListener('mouseenter', activate);
+      item.addEventListener('mouseleave', deactivate);
+      item.addEventListener('focus', activate);
+      item.addEventListener('blur', deactivate);
+      item.addEventListener('touchstart', activate, { passive: true });
+      item.addEventListener('touchend', () => setTimeout(deactivate, 600), { passive: true });
     }
   });
 }
