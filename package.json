@@ -1,0 +1,18 @@
+{
+  "name": "ladderframe-landing",
+  "version": "1.0.0",
+  "description": "LadderFrame Advisors - Advisory for the Next Phase of Growth",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "test": "node test_endpoints.js"
+  },
+  "keywords": [
+    "ladderframe",
+    "advisors",
+    "landing-page"
+  ],
+  "author": "LadderFrame Advisors",
+  "license": "ISC"
+}
