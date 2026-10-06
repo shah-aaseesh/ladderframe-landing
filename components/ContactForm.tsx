@@ -124,8 +124,20 @@ export default function ContactForm() {
     setIsSubmitting(true);
 
     try {
-      // Form submission simulation / endpoint call
-      await new Promise((resolve) => setTimeout(resolve, 600));
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || result.error) {
+        throw new Error(result.error || 'Failed to send');
+      }
+
       setIsSubmitted(true);
       if (typeof window !== 'undefined') {
         const dataLayer = (window as unknown as { dataLayer?: unknown[] }).dataLayer;
@@ -137,8 +149,13 @@ export default function ContactForm() {
           containerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }, 50);
       }
-    } catch {
-      setAlertError("Your message wasn't sent. Please try again, or email anurag@ladderframe.in directly.");
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : "Your message wasn't sent.";
+      setAlertError(
+        errorMessage.includes('configuration')
+          ? "The form is in test mode. Please contact anurag@ladderframe.in directly."
+          : "Your message wasn't sent. Please try again, or email anurag@ladderframe.in directly."
+      );
     } finally {
       setIsSubmitting(false);
     }
