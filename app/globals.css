@@ -5239,23 +5239,54 @@ body {
   font-weight: 600;
   font-size: 0.975rem;
   color: var(--color-navy);
-  overflow-wrap: anywhere;
+  white-space: nowrap;
 }
 
-.contact-direct-table .direct-val a {
+.contact-direct-table .direct-val a,
+.contact-direct-table .direct-link {
   color: var(--color-navy);
-  text-decoration: none;
-  font-weight: 600;
-  transition: color var(--transition-fast);
-}
-
-.contact-direct-table .direct-val a:hover {
-  color: var(--color-red);
   text-decoration: underline;
-  text-underline-offset: 3px;
+  text-decoration-color: rgba(11, 28, 58, 0.32);
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1.5px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color var(--transition-fast), text-decoration-color var(--transition-fast), text-underline-offset var(--transition-fast);
 }
 
-.contact-direct-table .btn-copy {
+.contact-direct-table .direct-val a:hover,
+.contact-direct-table .direct-link:hover {
+  color: var(--color-red);
+  text-decoration-color: var(--color-red);
+  text-underline-offset: 5px;
+}
+
+.contact-direct-table .direct-link-icon {
+  flex-shrink: 0;
+  color: var(--color-charcoal-subtle);
+  transition: transform var(--transition-fast), color var(--transition-fast);
+}
+
+.contact-direct-table .direct-val a:hover .direct-link-icon,
+.contact-direct-table .direct-link:hover .direct-link-icon {
+  color: var(--color-red);
+  transform: translate(2px, -2px);
+}
+
+.contact-direct-table .direct-actions {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 82px;
+  flex-shrink: 0;
+}
+
+.contact-direct-table .btn-copy,
+.contact-direct-table .btn-direct-action {
   font-family: var(--font-headline);
   font-size: 0.8125rem;
   font-weight: 500;
@@ -5267,14 +5298,36 @@ body {
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  justify-content: center;
+  gap: 0.35rem;
+  text-decoration: none;
+  white-space: nowrap;
   transition: all var(--transition-fast);
 }
 
-.contact-direct-table .btn-copy:hover {
+.contact-direct-table .btn-copy:hover,
+.contact-direct-table .btn-direct-action:hover {
   background: var(--color-bg-sand);
   color: var(--color-navy);
-  border-color: var(--color-charcoal-muted);
+  border-color: var(--color-navy);
+}
+
+.contact-direct-table .btn-direct-action .btn-direct-action-arrow {
+  font-size: 0.85em;
+  line-height: 1;
+  transition: transform var(--transition-fast), color var(--transition-fast);
+}
+
+.contact-direct-table .btn-direct-action:hover .btn-direct-action-arrow {
+  transform: translate(2px, -2px);
+  color: var(--color-red);
+}
+
+.contact-direct-table .direct-val a:focus-visible,
+.contact-direct-table .btn-copy:focus-visible,
+.contact-direct-table .btn-direct-action:focus-visible {
+  outline: 2px solid var(--color-navy);
+  outline-offset: 3px;
 }
 
 /* What Happens Next Counter List */
@@ -5626,12 +5679,16 @@ body {
 
 .footer a {
   color: #CBD5E1;
-  text-decoration: none;
-  transition: color var(--transition-fast);
+  text-decoration: underline;
+  text-decoration-color: rgba(203, 213, 225, 0.35);
+  text-underline-offset: 3px;
+  white-space: nowrap;
+  transition: color var(--transition-fast), text-decoration-color var(--transition-fast);
 }
 
 .footer a:hover {
   color: #FFFFFF;
+  text-decoration-color: #FFFFFF;
 }
 
 /* ==========================================================================
@@ -5816,6 +5873,36 @@ body {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.75rem;
+  }
+
+  .contact-direct-table .direct-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "label action"
+      "val val";
+    row-gap: 0.35rem;
+    column-gap: 0.75rem;
+    align-items: center;
+    padding: 0.95rem 0;
+  }
+
+  .contact-direct-table .direct-label {
+    grid-area: label;
+    min-width: 0;
+  }
+
+  .contact-direct-table .direct-actions {
+    grid-area: action;
+    margin-left: 0;
+  }
+
+  .contact-direct-table .direct-val {
+    grid-area: val;
+    width: 100%;
+    padding-top: 0.15rem;
+    white-space: nowrap;
+    overflow-x: auto;
   }
 }
 

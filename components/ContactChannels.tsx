@@ -37,16 +37,24 @@ export default function ContactChannels() {
             EMAIL
           </span>
           <span className="direct-val">
-            <a href="mailto:anurag@ladderframe.in">anurag@ladderframe.in</a>
+            <a href="mailto:anurag@ladderframe.in" className="direct-link">
+              <span>anurag@ladderframe.in</span>
+              <svg className="direct-link-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <line x1="7" y1="17" x2="17" y2="7"/>
+                <polyline points="7 7 17 7 17 17"/>
+              </svg>
+            </a>
           </span>
-          <button
-            type="button"
-            className="btn-copy"
-            onClick={handleCopyEmail}
-            aria-label="Copy email address"
-          >
-            {copied ? 'Copied' : 'Copy'}
-          </button>
+          <div className="direct-actions">
+            <button
+              type="button"
+              className="btn-copy"
+              onClick={handleCopyEmail}
+              aria-label="Copy email address"
+            >
+              {copied ? 'Copied' : 'Copy'}
+            </button>
+          </div>
         </div>
 
         <div className="direct-row">
@@ -61,31 +69,28 @@ export default function ContactChannels() {
               href="https://wa.me/919930133194"
               target="_blank"
               rel="noopener noreferrer"
+              className="direct-link"
             >
-              +91 99301 33194
+              <span>+91 99301 33194</span>
+              <svg className="direct-link-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <line x1="7" y1="17" x2="17" y2="7"/>
+                <polyline points="7 7 17 7 17 17"/>
+              </svg>
             </a>
           </span>
-        </div>
-
-        <div className="direct-row">
-          <span className="direct-label">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-              <rect x="2" y="9" width="4" height="12"/>
-              <circle cx="4" cy="4" r="2"/>
-            </svg>
-            LINKEDIN
-          </span>
-          <span className="direct-val">
+          <div className="direct-actions">
             <a
-              href="https://www.linkedin.com/company/ladderframe-advisors/"
+              href="https://wa.me/919930133194"
               target="_blank"
               rel="noopener noreferrer"
+              className="btn-direct-action"
+              aria-label="Chat on WhatsApp"
             >
-              LadderFrame Advisors
+              Chat <span className="btn-direct-action-arrow" aria-hidden="true">↗</span>
             </a>
-          </span>
+          </div>
         </div>
+
       </div>
 
       <div className="contact-trust-badges">
